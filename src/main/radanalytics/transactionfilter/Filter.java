@@ -1,4 +1,4 @@
-package radanalytics.eligible_client_filter;
+package main.radanalytics.transactionfilter;
 
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.SparkSession;

@@ -1,4 +1,4 @@
-package radanalytics.eligible_client_filter;
+package  main.radanalytics.transactionfilter;
 
 public class App {
     public static void main(String[] args)
