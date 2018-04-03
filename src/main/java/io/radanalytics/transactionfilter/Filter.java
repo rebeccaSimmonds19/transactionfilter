@@ -26,7 +26,7 @@ public class Filter {
                 .config("spark.master", "local")
                 .getOrCreate();
 
-        Dataset df =spark.read().option("header", "true").csv("UCI_Credit_Card.csv");
+        Dataset df =spark.read().option("header", "true").csv("tmp/src/UCI_Credit_Card.csv");
         //coloumn constraint
         Dataset result = df.where("PAY_0> 0 AND PAY_2 > 0 AND PAY_3 > 0 AND PAY_4 > 0 AND PAY_5 > 0 AND PAY_6 >0");
         System.out.println("this is the result "+result.count());
