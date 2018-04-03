@@ -1,4 +1,4 @@
-package main.radanalytics.transactionfilter;
+package radanalytics.transactionfilter;
 
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.SparkSession;
