@@ -3,6 +3,9 @@ package radanalytics.transactionfilter;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.SparkSession;
 
+import java.util.Properties;
+
+
 /**
  * Filter clients which have not defaulted on payments
  * so the left over clients can be sent to the rules engine
@@ -20,15 +23,13 @@ public class Filter {
     public void filterData(String data)
     {
         //create a spark session
-        SparkSession spark = SparkSession
-                .builder()
-                .appName("Simple Name")
-                .config("spark.master", "local")
-                .getOrCreate();
-
-        Dataset df =spark.read().option("header", "true").csv("/tmp/src/UCI_Credit_Card.csv");
+        SparkSession spark = SparkSession.builder().appName("Simple Name").config("spark.master", "local").getOrCreate();
+        String url = "jdbc:postgresql://postgresl/transactionDb?user=username&password=password";
+        Properties properties = new Properties();
+        properties.setProperty("driver","org.postgresql.Driver");
+        Dataset df =spark.read().jdbc(url, "clients",properties).toDF();
         //coloumn constraint
         Dataset result = df.where("PAY_0> 0 AND PAY_2 > 0 AND PAY_3 > 0 AND PAY_4 > 0 AND PAY_5 > 0 AND PAY_6 >0");
-        System.out.println("this is the result "+result.count());
+        System.out.println(result);
     }
 }
