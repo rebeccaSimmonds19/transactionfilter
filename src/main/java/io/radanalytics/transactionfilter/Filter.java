@@ -20,7 +20,7 @@ public class Filter {
 
     }
 
-    public void filterData(String data)
+    public void filterData()
     {
         //create a spark session
         SparkSession spark = SparkSession.builder().appName("Simple Name").config("spark.master", "local").getOrCreate();
